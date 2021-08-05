@@ -1,0 +1,3 @@
+0, 1, 2, 3, 4
+Marcos, Daniel, Andres, Valentina, Luis
+rojo, azul, amarillo, gris, verde
