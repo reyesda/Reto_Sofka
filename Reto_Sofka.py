@@ -74,9 +74,9 @@ class pista:  # crea el objeto que almacena todos los carriles
             i.desplazamiento(i.distancia)
             i.comprobar()
 
-            dibujar_carros(i.nombre, i.figura, i.porcentaje_carrera, i.ganador)
+            #  dibujar_carros(i.nombre, i.figura, i.porcentaje_carrera, i.ganador)
 
-        time.sleep(0.2)
+        #  time.sleep(0.2)
 
 
 class podio:  # clase para guardar la posición de llegada
@@ -134,6 +134,11 @@ with open("data.txt", "a") as dt:
 # print(podio1.resultado)
 
 
+def reporte_estadistica(resultados_estadisticas):
+    with open("result.txt", "w") as dt_r:
+        dt_r.write("Reporte estadisticas".center(10, "="))
+
+
 # función para calcular las estadísticas de los corredores
 def estadisticas():
     total_primero = [0, 0, 0, 0, 0]  # indica el numero de veces que el corredor a quedado de primero
@@ -166,9 +171,11 @@ def estadisticas():
     # guarda todas las variables es “resultados_estadisticas”
     resultados_estadisticas = [total_primero, procentaje_primero, veces_podio, total_partidas, ultimos_ganadores]
 
-    return resultados_estadisticas
+    reporte_estadistica(resultados_estadisticas)
+    # return resultados_estadisticas
 
-# print(estadisticas())
+
+estadisticas()
 
 
 # por = [0.9, 1, 0.8, 1, 0.95]
