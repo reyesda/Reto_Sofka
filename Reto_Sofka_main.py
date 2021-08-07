@@ -74,9 +74,9 @@ while game_over is False:
         for i in data:
             print(i[0])
 
-        time.sleep(15)
+        time.sleep(13)
 
-    if not game_over:
+    if game_over is False:
         # ventana seleccionar corredor
         final_cadena = [Rs_funciones.centro_caracter(" Seleccione su corredor   ", cadena, " ") + '\n',
                         "   (0) Marcos", "   (1) Daneil    ", "   (2) Andres", "   (3) Camilo", "   (4) Wilson"]
@@ -140,3 +140,9 @@ while game_over is False:
             pass
         else:
             game_over = True
+    else:
+        final_cadena = [Rs_funciones.centro_caracter(" ¡Gracias por jugar con nosotros! ", cadena, "*"),
+                        Rs_funciones.centro_caracter(" Vuelva pronto  ", cadena, " ") + '\n',
+                        "   (0) Para salir"]
+
+        Rs_funciones.resultado_usuario_bool(cadena, final_cadena, concursante)
