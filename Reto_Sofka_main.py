@@ -89,6 +89,7 @@ while game_over is False:
         time.sleep(15)
 
     if not game_over:
+        # ventana seleccionar corredor
         final_cadena = [Rs_funciones.centro_caracter(" Seleccione su corredor   ", cadena, " ") + '\n',
                         "   (0) Marcos", "   (1) Daneil    ", "   (2) Andres", "   (3) Camilo", "   (4) Wilson"]
 
@@ -102,6 +103,21 @@ while game_over is False:
             usuario_input = Rs_funciones.input_usuario("    ", 0, 4)
 
         concursante.elegido = usuario_input
+
+        # ventana de la apuesta
+        final_cadena = [Rs_funciones.centro_caracter(" ¿Cuánto va a apostar? ", cadena, " ") + '\n',
+                        "   puede apostar desde $1,000 hasta ${:,}".format(concursante.dinero)]
+
+        usuario_input = "error"
+        while usuario_input == "error":
+            Rs_funciones.barra_estado(cadena, concursante)
+
+            for i in final_cadena:
+                print(i)
+
+            usuario_input = Rs_funciones.input_usuario("    ", 1000, concursante.dinero)
+
+        concursante.apuesta = usuario_input
 
         podio.guardar_ganador(pista)
         podio.ordenar_resultado()

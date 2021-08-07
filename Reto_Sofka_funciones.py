@@ -171,7 +171,7 @@ class carril(carro):  # hereda de carro
     def __init__(self, identificador, nombre, figura, ):
         carro.__init__(self, identificador, nombre, figura)
 
-        self.distancia = 20  # está en kilometros
+        self.distancia = 10  # está en kilometros
         self.ganador = False  # indica si ya llegó a la meta
 
         self.porcentaje_carrera = 0
@@ -194,15 +194,15 @@ class pista:  # crea el objeto que almacena todos los carriles
 
     # llama el método de avanzar para los carros y verificar si ganaron
     def avanzar(self):
-        # limpiar_consola()
+        limpiar_consola()
 
         for i in self.carriles:
             i.desplazamiento(i.distancia)
             i.comprobar()
 
-            #  dibujar_carros(i.nombre, i.figura, i.porcentaje_carrera, i.ganador)
+            dibujar_carros(i.nombre, i.figura, i.porcentaje_carrera, i.ganador)
 
-        #  time.sleep(0.2)
+        time.sleep(0.2)
 
 
 class podio:  # clase para guardar la posición de llegada
@@ -237,6 +237,7 @@ class concursante:
     def __init__(self):
         self.dinero = 10000
         self.elegido = 0
+        self.apuesta = 0
 
     def balance_dinero(self, diferencia):
         self.dinero += diferencia
