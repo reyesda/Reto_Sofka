@@ -118,9 +118,12 @@ while game_over is False:
             usuario_input = Rs_funciones.input_usuario("    ", 1000, concursante.dinero)
 
         concursante.apuesta = usuario_input
+        concursante.dinero -= concursante.apuesta
 
         podio.guardar_ganador(pista)
         podio.ordenar_resultado()
 
         Rs_funciones.estadisticas(datos)
         Rs_funciones.actualizar_archivo(podio)
+
+        # Ventana de resultados
