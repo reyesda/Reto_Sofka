@@ -12,6 +12,19 @@ def limpiar_consola():
         os.system("clear")
 
 
+# función para validar entrada de usuario
+def input_usuario(texto, valor_inferior=0, valor_superior=1000000):
+    try:
+        in_usu = float(input(texto))
+        # se mira si esta dentro del rango permisible
+        if in_usu in range(valor_inferior, valor_superior):
+            return in_usu
+    # se mira si entrega un valor diferente a un float
+    except ValueError:
+        pass
+        # print("input no valido")
+
+
 # función para graficar la carrera
 def dibujar_carros(nombres, figuras, porcentajes, llego):
     maximo_casillas = 70  # máximos caracteres en pantalla
@@ -196,8 +209,7 @@ def estadisticas():
     reporte_estadistica(resultados_estadisticas)
     # return resultados_estadisticas
 
-
-estadisticas()
+# estadisticas()
 
 # por = [0.9, 1, 0.8, 1, 0.95]
 # dibujar_carros(data[1], data[2], por)
