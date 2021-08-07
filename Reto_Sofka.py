@@ -31,3 +31,15 @@ class carril(carro):
             self.ganador = True
 
 
+class pista:
+    def __init__(self):
+        self.carriles = []
+
+    def llenar_carriles(self, identificador, nombre, figura, distancia):
+        for i in range(len(identificador)):
+            self.carriles.append(carril(identificador[i], nombre[i], figura[i], distancia))
+
+    def avanzar(self):
+        for i in self.carriles:
+            i.desplazamiento(i.distancia)
+            i.comprobar()
