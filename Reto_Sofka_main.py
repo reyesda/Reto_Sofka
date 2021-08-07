@@ -26,8 +26,14 @@ while game_over is False:
 
     pista.llenar_carriles(datos[0], datos[1], datos[2])
 
-final_cadena = [Rs_funciones.centro_caracter(" Bienvenido a apuestas deportivas ", cadena),
-                Rs_funciones.centro_caracter(" La avaricia  ", cadena) + '\n' + '\n',
-                "   (0) Empezar apuesta  ", "   (1) Salir del juego    "]
+    final_cadena = [Rs_funciones.centro_caracter(" Bienvenido a apuestas deportivas ", cadena),
+                    Rs_funciones.centro_caracter(" La avaricia  ", cadena) + '\n' + '\n',
+                    "   (1) Empezar apuesta  (-$500)", "   (0) Salir del juego    "]
 
-print(Rs_funciones.resultado_usuario_bool(cadena, final_cadena, concursante))
+    if Rs_funciones.resultado_usuario_bool(cadena, final_cadena, concursante):
+        if concursante.dinero > 1500:
+            pass
+        else:
+            pass
+    else:
+        pass
