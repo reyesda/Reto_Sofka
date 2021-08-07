@@ -43,3 +43,22 @@ class pista:
         for i in self.carriles:
             i.desplazamiento(i.distancia)
             i.comprobar()
+
+
+class podio:
+    def __init__(self):
+        self.orden_llegada = []
+        self.resultado = []
+
+    def guardar_ganador(self, objeto_pista):
+        while len(self.orden_llegada) < len(objeto_pista.carriles):
+            objeto_pista.avanzar()
+
+            for i in objeto_pista.carriles:
+                if i.identificador not in self.orden_llegada:
+                    if i.ganador is True:
+                        self.orden_llegada.append(i.identificador)
+
+    def ordenar_resultado(self):
+        for i in range(len(self.orden_llegada)):
+            self.resultado.append(self.orden_llegada.index(i) + 1)
