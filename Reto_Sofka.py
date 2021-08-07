@@ -68,7 +68,7 @@ class pista:  # crea el objeto que almacena todos los carriles
 
     # llama el método de avanzar para los carros y verificar si ganaron
     def avanzar(self):
-        limpiar_consola()
+        # limpiar_consola()
 
         for i in self.carriles:
             i.desplazamiento(i.distancia)
@@ -136,7 +136,9 @@ with open("data.txt", "a") as dt:
 
 def reporte_estadistica(resultados_estadisticas):
     with open("result.txt", "w") as dt_r:
-        dt_r.write("Reporte estadisticas".center(10, "="))
+        cadena = "Reporte estadisticas".capitalize()
+        dt_r.write(cadena.center(60, "=") + '\n' + '\n')
+        dt_r.write("Numero de carreras totales realizadas: {}".format(resultados_estadisticas[3]) + '\n' + '\n')
 
 
 # función para calcular las estadísticas de los corredores
