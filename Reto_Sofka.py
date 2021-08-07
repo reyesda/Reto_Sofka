@@ -20,11 +20,14 @@ class carro(jugador):
 
 
 class carril(carro):
-    def __init__(self, identificador, nombre, color, posicion, distancia, ganador):
-        carro.__init__(self, identificador, nombre, color, posicion)
+    def __init__(self, identificador, nombre, figura, distancia):
+        carro.__init__(self, identificador, nombre, figura)
 
-        self.distancia = distancia
-        self.ganador = ganador
+        self.distancia = distancia  # esta en kilometros
+        self.ganador = False
+
+    def comprobar(self):
+        if self.posicion == self.distancia * 1000:
+            self.ganador = True
 
 
-pista = [carril(1, "marcos", "rojo", 0, 2, False), carril(2, "daniel", "verde", 0, 2, False)]
