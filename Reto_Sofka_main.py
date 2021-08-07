@@ -131,3 +131,12 @@ while game_over is False:
 
             Rs_funciones.resultado_usuario_bool(cadena, final_cadena, concursante)
 
+        # pantalla continuar jugando
+        final_cadena = [Rs_funciones.centro_caracter(" ¿Desea seguir jugando?   ",
+                                                     cadena, " ") + '\n' + '\n',
+                        "   (1) Sí", "   (0) No    "]
+
+        if Rs_funciones.resultado_usuario_bool(cadena, final_cadena, concursante):
+            pass
+        else:
+            game_over = True
