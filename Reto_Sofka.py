@@ -3,7 +3,9 @@ import time
 import os
 
 
+# función para limpiar consola
 def limpiar_consola():
+    # identifica el sistema operativo
     if os.name == "nt":
         os.system("cls")
     else:
@@ -18,6 +20,7 @@ def dibujar_carros(nombres, figuras, porcentajes, llego):
           "-" * round(maximo_casillas * (1 - porcentajes)) + "] " + "$" * int(llego))
 
 
+# clase del jugador / corredor
 class jugador:
     def __init__(self, identificador, nombre):
         self.identificador = identificador  # para asignar su lugar las listas
@@ -65,7 +68,6 @@ class pista:  # crea el objeto que almacena todos los carriles
 
     # llama el método de avanzar para los carros y verificar si ganaron
     def avanzar(self):
-        # time.sleep(0.2)
         limpiar_consola()
 
         for i in self.carriles:
