@@ -105,8 +105,11 @@ print(podio1.resultado)
 
 
 def estadisticas():
-    resultados_estadisticas = []
     total_primero = [0, 0, 0, 0, 0]
+    veces_podio = [0, 0, 0, 0, 0]
+    total_partidas = len(data) - 3
+    ultimos_ganadores = []
+
     for i in range(3, len(data)):
         data[i] = [int(j) for j in data[i]]
 
@@ -114,7 +117,17 @@ def estadisticas():
             if data[i][t] == 1:
                 total_primero[t] += data[i][t]
 
-    print(total_primero)
+                if i >= len(data) - 3:
+                    ultimos_ganadores.append(t + 1)
+
+            if data[i][t] <= 3:
+                veces_podio[t] += 1
+
+    procentaje_primero = [round((i / sum(total_primero)) * 100) for i in total_primero if i != 0]
+
+    resultados_estadisticas = [total_primero, procentaje_primero, veces_podio, total_partidas, ultimos_ganadores]
+
+    return resultados_estadisticas
 
 
-estadisticas()
+print(estadisticas())
