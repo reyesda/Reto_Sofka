@@ -22,22 +22,42 @@ while game_over is False:
     podio = Rs_funciones.podio()
 
     concursante = Rs_funciones.concursante()
-    concursante.dinero = 500
+    concursante.dinero = 1600
 
     pista.llenar_carriles(datos[0], datos[1], datos[2])
 
-    final_cadena = [Rs_funciones.centro_caracter(" Bienvenido a apuestas deportivas ", cadena),
-                    Rs_funciones.centro_caracter(" La avaricia  ", cadena) + '\n' + '\n',
+    final_cadena = [Rs_funciones.centro_caracter(" Bienvenido a apuestas deportivas ", cadena, "="),
+                    Rs_funciones.centro_caracter(" La avaricia  ", cadena, "=") + '\n' + '\n',
                     "   (1) Empezar apuesta  (-$500)", "   (0) Salir del juego    "]
 
     if Rs_funciones.resultado_usuario_bool(cadena, final_cadena, concursante):
+
         if concursante.dinero > 1500:
-            pass
+            concursante. dinero -= 500
+
+            # concursante.dinero = 400
+            final_cadena = [Rs_funciones.centro_caracter(" ¿Desea ver las estadísticas de los corredores?   ",
+                                                         cadena, " ") + '\n' + '\n',
+                            "   (1) Ver las estadísticas  (-$500)", "   (0) No    "]
+
+            if Rs_funciones.resultado_usuario_bool(cadena, final_cadena, concursante):
+                concursante.dinero -= 500
+
+                if concursante.dinero > 1000:
+                    pass
+                else:
+                    final_cadena = [Rs_funciones.centro_caracter(" ¿Desea ver las estadísticas de los corredores?   ",
+                                                                 cadena, " ") + '\n' + '\n',
+                                    "   No tienes suficiente dinero", "   (0) No    "]
+
+                    Rs_funciones.resultado_usuario_bool(cadena, final_cadena, concursante)
+            else:
+                pass
         else:
             game_over = True
 
-            final_cadena = [Rs_funciones.centro_caracter(" Bienvenido a apuestas deportivas ", cadena),
-                            Rs_funciones.centro_caracter(" La avaricia  ", cadena) + '\n' + '\n',
+            final_cadena = [Rs_funciones.centro_caracter(" Bienvenido a apuestas deportivas ", cadena, "="),
+                            Rs_funciones.centro_caracter(" La avaricia  ", cadena, "=") + '\n' + '\n',
                             "   No tienes suficiente dinero ", "   (0) Salir del juego    "]
 
             Rs_funciones.resultado_usuario_bool(cadena, final_cadena, concursante)

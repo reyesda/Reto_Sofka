@@ -123,8 +123,8 @@ def barra_estado(str_in, player):
 
 
 # coloca caracteres en mayúscula y en medio de “=”
-def centro_caracter(str_escrito, str_guia):
-    return str_escrito.upper().center(len(str_guia), "=")
+def centro_caracter(str_escrito, str_guia, k):
+    return str_escrito.upper().center(len(str_guia), k)
 
 
 # muestra en pantalla todos los mensajes de  “iterable_str” y toma el input del usuario como bool
