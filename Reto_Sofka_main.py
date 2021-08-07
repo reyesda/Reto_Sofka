@@ -102,3 +102,9 @@ while game_over is False:
             usuario_input = Rs_funciones.input_usuario("    ", 0, 4)
 
         concursante.elegido = usuario_input
+
+        podio.guardar_ganador(pista)
+        podio.ordenar_resultado()
+
+        Rs_funciones.estadisticas(datos)
+        Rs_funciones.actualizar_archivo(podio)
