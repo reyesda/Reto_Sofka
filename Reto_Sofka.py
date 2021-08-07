@@ -77,17 +77,27 @@ class podio:  # clase para guardar la posición de llegada
             self.resultado.append(self.orden_llegada.index(i) + 1)
 
 
-identificador1 = [0, 1, 2, 3, 4]
-nombre1 = ["Marcos", "Daniel", "Andres", "Valentina", "Juan"]
-figura1 = ["]■>", "}■>", ")■>", "╠■>", "#■>"]
-distancia1 = 4
+# leer archivo
+with open("data.txt", "r") as dt:
+    # extraer líneas, borrar salto de línea, separar por comas
+    data = [linea.rstrip('\n').split(",") for linea in dt]
+    # transformar primer elemento a int
+    data[0] = [int(i) for i in data[0]]
+
+
+distancia1 = 4  # en kilometros
 
 pista1 = pista()
 podio1 = podio()
 
-pista1.llenar_carriles(identificador1, nombre1, figura1, distancia1)
+pista1.llenar_carriles(data[0], data[1], data[2], distancia1)
 
 podio1.guardar_ganador(pista1)
 podio1.ordenar_resultado()
+
+# escribir en la última línea del archivo
+with open("data.txt", "a") as dt:
+    # transformar lista en string y agregar un salto de línea
+    dt.write(",".join(map(str, podio1.resultado)) + '\n')
 
 print(podio1.resultado)
