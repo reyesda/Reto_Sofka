@@ -19,11 +19,13 @@ def input_usuario(texto, valor_inferior=0, valor_superior=1000000):
     try:
         in_usu = float(input(texto))
         # se mira si esta dentro del rango permisible
-        if in_usu in range(valor_inferior, valor_superior):
+        if in_usu in range(valor_inferior, valor_superior + 1):
             return in_usu
+        else:
+            return "error"
     # se mira si entrega un valor diferente a un float
     except ValueError:
-        pass
+        return "error"
         # print("input no valido")
 
 

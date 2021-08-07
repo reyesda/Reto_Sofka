@@ -13,17 +13,27 @@ from datetime import datetime
 # Rs_funciones.estadisticas(datos)
 # Rs_funciones.actualizar_archivo(podio)
 
-Reto_Sofka_funciones.limpiar_consola()
-concursante = Rs_funciones.concursante()
-now = datetime.now()
-cadena = "$ {:,}                                                      {}:{}"
-print(cadena.format(concursante.dinero, now.hour, now.minute))
-print("¯" * (len(cadena) + 2) + '\n')
 
-cadena2 = " Bienvenido a apuestas deportivas ".upper()
-print(cadena2.center(len(cadena) + 2, "="))
-cadena2 = " La avaricia  ".lower()
-print(cadena2.center(len(cadena) + 2, "=") + '\n' + '\n')
-print("   (1) Empezar apuesta  ")
-print("   (2) Salir del juego    ")
-Rs_funciones.input_usuario("    ", 1, 2)
+concursante = Rs_funciones.concursante()
+cadena = "$ {:,}                                                      {}:{}"
+
+
+def barra_estado():
+    now = datetime.now()
+    Reto_Sofka_funciones.limpiar_consola()
+    print(cadena.format(concursante.dinero, now.hour, now.minute))
+    print("¯" * (len(cadena) + 2) + '\n')
+
+
+usuario_input = "error"
+while usuario_input == "error":
+    barra_estado()
+
+    cadena2 = " Bienvenido a apuestas deportivas ".upper()
+    print(cadena2.center(len(cadena) + 2, "="))
+    cadena2 = " La avaricia  ".lower()
+    print(cadena2.center(len(cadena) + 2, "=") + '\n' + '\n')
+    print("   (0) Empezar apuesta  ")
+    print("   (1) Salir del juego    ")
+
+    usuario_input = Reto_Sofka_funciones.input_usuario("    ", 0, 1)
