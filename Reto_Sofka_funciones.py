@@ -138,7 +138,7 @@ def resultado_usuario_bool(str_ejemplo_largo, iterable_str, player):
 
         usuario_input = input_usuario("    ", 0, 1)
 
-    return usuario_input
+    return bool(usuario_input)
 
 
 # Definición de funciones _____________________________________________________________
