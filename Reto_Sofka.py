@@ -101,7 +101,7 @@ with open("data.txt", "a") as dt:
     if podio1.resultado:
         dt.write(",".join(map(str, podio1.resultado)) + '\n')
 
-print(podio1.resultado)
+# print(podio1.resultado)
 
 
 # función para calcular las estadísticas de los corredores
@@ -139,4 +139,14 @@ def estadisticas():
     return resultados_estadisticas
 
 
-print(estadisticas())
+# print(estadisticas())
+
+def dibujar_carros(nombres, figuras, porcentajes):
+    maximo_casillas = 70
+    for i in range(len(nombres)):
+        print(nombres[i] + "  [" + ("░" * round(maximo_casillas * porcentajes[i])) + figuras[i] +\
+              ("-" * round(maximo_casillas * (1 - porcentajes[i]))) + "] ")
+
+
+por = [0.9, 1, 0.8, 1, 0.95]
+dibujar_carros(data[1], data[2], por)
