@@ -139,6 +139,11 @@ def reporte_estadistica(resultados_estadisticas):
         cadena = "Reporte estadisticas".capitalize()
         dt_r.write(cadena.center(60, "=") + '\n' + '\n')
         dt_r.write("Numero de carreras totales realizadas: {}".format(resultados_estadisticas[3]) + '\n' + '\n')
+        dt_r.write("Corredor     juegos ganados      porcentaje victorias " + '\n')
+
+        for i in range(len(resultados_estadisticas[0])):
+            dt_r.write("{}             {}                 {}%".format(data[1][i], resultados_estadisticas[0][i],
+                                                                      resultados_estadisticas[1][i]) + '\n')
 
 
 # función para calcular las estadísticas de los corredores
@@ -178,7 +183,6 @@ def estadisticas():
 
 
 estadisticas()
-
 
 # por = [0.9, 1, 0.8, 1, 0.95]
 # dibujar_carros(data[1], data[2], por)
