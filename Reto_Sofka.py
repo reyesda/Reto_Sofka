@@ -14,6 +14,10 @@ class carro(jugador):
         self.figura = figura
         self.posicion = 0  # esta en metros
 
+    def desplazamiento(self, limite):
+        self.posicion += random.randint(1, 6) * 100
+        self.posicion = self.posicion if self.posicion <= (limite * 1000) else limite * 1000
+
 
 class carril(carro):
     def __init__(self, identificador, nombre, color, posicion, distancia, ganador):
