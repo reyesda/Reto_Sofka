@@ -104,27 +104,36 @@ with open("data.txt", "a") as dt:
 print(podio1.resultado)
 
 
+# función para calcular las estadísticas de los corredores
 def estadisticas():
-    total_primero = [0, 0, 0, 0, 0]
-    veces_podio = [0, 0, 0, 0, 0]
-    total_partidas = len(data) - 3
-    ultimos_ganadores = []
+    total_primero = [0, 0, 0, 0, 0]  # indica el numero de veces que el corredor a quedado de primero
+    veces_podio = [0, 0, 0, 0, 0]  # indica el numero de veces que el corredor queda en los 3 primeros
+    total_partidas = len(data) - 3  # indica el numero de veces que se han guardado partidas
+    ultimos_ganadores = []  # guarda los 3 últimos ganadores
 
     for i in range(3, len(data)):
+        # transformar todos los elementos a int
         data[i] = [int(j) for j in data[i]]
 
+        # recorre cada lista de resultado
         for t in range(len(data[i])):
+            # busca que corredor quedó de primero
             if data[i][t] == 1:
+                # sumas las victorias del corredor
                 total_primero[t] += data[i][t]
 
+                # encuentra los últimos 3 ganadores
                 if i >= len(data) - 3:
                     ultimos_ganadores.append(t)
 
+            # identifica si el corredor estuvo dentro de los 3 primeros
             if data[i][t] <= 3:
                 veces_podio[t] += 1
 
+    # calcula el porcentaje de victorias de los corredores
     procentaje_primero = [round((i / sum(total_primero)) * 100) for i in total_primero if i != 0]
 
+    # guarda todas las variables es “resultados_estadisticas”
     resultados_estadisticas = [total_primero, procentaje_primero, veces_podio, total_partidas, ultimos_ganadores]
 
     return resultados_estadisticas
