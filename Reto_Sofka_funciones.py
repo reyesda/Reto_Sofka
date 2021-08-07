@@ -93,7 +93,7 @@ def dibujar_carros(nombres, figuras, porcentajes, llego):
 
 
 # escribir resultado en la última línea del archivo
-def actualizar_archivo():
+def actualizar_archivo(podio1):
     with open("data.txt", "a") as dt2:
         # transformar lista en string y agregar un salto de línea
         if podio1.resultado:
@@ -211,21 +211,3 @@ class concursante:
 
     def balance_dinero(self, diferencia):
         self.dinero += diferencia
-
-
-# Definición de clases  _______________________________________________________________
-
-# Main  _______________________________________________________________
-
-datos = leer_archivo()
-
-pista1 = pista()
-podio1 = podio()
-
-pista1.llenar_carriles(datos[0], datos[1], datos[2])
-
-podio1.guardar_ganador(pista1)
-podio1.ordenar_resultado()
-
-estadisticas(datos)
-actualizar_archivo()
