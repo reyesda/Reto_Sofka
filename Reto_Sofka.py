@@ -92,6 +92,24 @@ def dibujar_carros(nombres, figuras, porcentajes, llego):
           "-" * round(maximo_casillas * (1 - porcentajes)) + "] " + "$" * int(llego))
 
 
+# escribir en la última línea del archivo
+def actualizar_archivo():
+    with open("data.txt", "a") as dt2:
+        # transformar lista en string y agregar un salto de línea
+        if podio1.resultado:
+            dt2.write(",".join(map(str, podio1.resultado)) + '\n')
+
+
+# leer archivo
+def leer_archivo():
+    global data
+    with open("data.txt", "r") as dt:
+        # extraer líneas, borrar salto de línea, separar por comas
+        data = [linea.rstrip('\n').split(",") for linea in dt]
+        # transformar primer elemento a int
+        data[0] = [int(i) for i in data[0]]
+
+
 # Definición de funciones _____________________________________________________________
 
 # Definición de clases  _______________________________________________________________
@@ -198,13 +216,8 @@ class concursante:
 
 # Main  _______________________________________________________________
 
-# leer archivo
-with open("data.txt", "r") as dt:
-    # extraer líneas, borrar salto de línea, separar por comas
-    data = [linea.rstrip('\n').split(",") for linea in dt]
-    # transformar primer elemento a int
-    data[0] = [int(i) for i in data[0]]
-
+data = []
+leer_archivo()
 distancia1 = 20  # en kilometros
 
 pista1 = pista()
@@ -216,9 +229,4 @@ podio1.guardar_ganador(pista1)
 podio1.ordenar_resultado()
 
 estadisticas()
-
-# escribir en la última línea del archivo
-with open("data.txt", "a") as dt:
-    # transformar lista en string y agregar un salto de línea
-    if podio1.resultado:
-        dt.write(",".join(map(str, podio1.resultado)) + '\n')
+actualizar_archivo()
