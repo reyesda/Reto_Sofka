@@ -145,6 +145,14 @@ def reporte_estadistica(resultados_estadisticas):
             dt_r.write("{}             {}                 {}%".format(data[1][i], resultados_estadisticas[0][i],
                                                                       resultados_estadisticas[1][i]) + '\n')
 
+        dt_r.write('\n' + "Numero de veces en el podio" + '\n')
+        for i in range(len(resultados_estadisticas[0])):
+            dt_r.write("{}             {} ".format(data[1][i], resultados_estadisticas[2][i]) + '\n')
+
+        dt_r.write('\n' + "Ganadores ultimas 3 carreras: ")
+        for i in resultados_estadisticas[4]:
+            dt_r.write("{}   ".format(data[1][i]))
+
 
 # función para calcular las estadísticas de los corredores
 def estadisticas():
