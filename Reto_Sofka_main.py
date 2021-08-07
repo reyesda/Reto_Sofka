@@ -18,28 +18,32 @@ concursante = Rs_funciones.concursante()
 cadena = "$ {:,}                                                      {}:{}"
 
 
-def barra_estado():
+def barra_estado(str_in):
     now = datetime.now()
     Reto_Sofka_funciones.limpiar_consola()
-    print(cadena.format(concursante.dinero, now.hour, now.minute))
-    print("¯" * (len(cadena) + 2) + '\n')
+    print(str_in.format(concursante.dinero, now.hour, now.minute))
+    print("¯" * (len(str_in) + 2) + '\n')
 
 
 def centro_caracter(str_escrito, str_guia):
     return str_escrito.upper().center(len(str_guia) + 2, "=")
 
 
-usuario_input = "error"
-while usuario_input == "error":
-    barra_estado()
-
-    print(" Bienvenido a apuestas deportivas ".upper().center(len(cadena) + 2, "="))
-    print(" La avaricia  ".lower().center(len(cadena) + 2, "=") + '\n' + '\n')
-    print("   (0) Empezar apuesta  ")
-    print("   (1) Salir del juego    ")
-
-    usuario_input = Reto_Sofka_funciones.input_usuario("    ", 0, 1)
-
 final_cadena = [centro_caracter(" Bienvenido a apuestas deportivas ", cadena),
-                centro_caracter(" Bienvenido a apuestas deportivas ", cadena) + '\n' + '\n',
+                centro_caracter(" La avaricia  ", cadena) + '\n' + '\n',
                 "   (0) Empezar apuesta  ", "   (1) Salir del juego    "]
+
+
+def resultado_usuario_bool(str_ejemplo_largo, iterable_str):
+    usuario_input = "error"
+    while usuario_input == "error":
+        barra_estado(str_ejemplo_largo)
+
+        for i in iterable_str:
+            print(i)
+
+        usuario_input = Reto_Sofka_funciones.input_usuario("    ", 0, 1)
+
+
+resultado_usuario_bool(cadena, final_cadena)
+
