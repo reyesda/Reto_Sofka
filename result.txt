@@ -1,3 +1,10 @@
 ====================Reporte estadisticas====================
 
-Numero de juegos totales: 77
+Numero de carreras totales realizadas: 85
+
+Corredor     juegos ganados      porcentaje victorias 
+Marcos             24                 28%
+Daniel             14                 16%
+Andres             17                 20%
+Camilo             18                 21%
+Wilson             12                 14%
