@@ -1,6 +1,7 @@
 import random
 import time
 import os
+from datetime import datetime
 
 # Definición de funciones _____________________________________________________________
 
@@ -111,6 +112,31 @@ def leer_archivo():
         # transformar primer elemento a int
         data[0] = [int(i) for i in data[0]]
     return data
+
+
+# borra todos los elementos de la consola y muestra fecha y plata concursante
+def barra_estado(str_in, player):
+    now = datetime.now()
+    limpiar_consola()
+    print(str_in.format(player.dinero, now.hour, now.minute))
+    print("¯" * (len(str_in) + 2) + '\n')
+
+
+# coloca caracteres en mayúscula y en medio de “=”
+def centro_caracter(str_escrito, str_guia):
+    return str_escrito.upper().center(len(str_guia) + 2, "=")
+
+
+# muestra en pantalla todos los mensajes de  “iterable_str” y toma el input del usuario como bool
+def resultado_usuario_bool(str_ejemplo_largo, iterable_str, player):
+    usuario_input = "error"
+    while usuario_input == "error":
+        barra_estado(str_ejemplo_largo, player)
+
+        for i in iterable_str:
+            print(i)
+
+        usuario_input = input_usuario("    ", 0, 1)
 
 
 # Definición de funciones _____________________________________________________________
