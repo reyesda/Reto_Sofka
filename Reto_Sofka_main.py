@@ -25,15 +25,21 @@ def barra_estado():
     print("¯" * (len(cadena) + 2) + '\n')
 
 
+def centro_caracter(str_escrito, str_guia):
+    return str_escrito.upper().center(len(str_guia) + 2, "=")
+
+
 usuario_input = "error"
 while usuario_input == "error":
     barra_estado()
 
-    cadena2 = " Bienvenido a apuestas deportivas ".upper()
-    print(cadena2.center(len(cadena) + 2, "="))
-    cadena2 = " La avaricia  ".lower()
-    print(cadena2.center(len(cadena) + 2, "=") + '\n' + '\n')
+    print(" Bienvenido a apuestas deportivas ".upper().center(len(cadena) + 2, "="))
+    print(" La avaricia  ".lower().center(len(cadena) + 2, "=") + '\n' + '\n')
     print("   (0) Empezar apuesta  ")
     print("   (1) Salir del juego    ")
 
     usuario_input = Reto_Sofka_funciones.input_usuario("    ", 0, 1)
+
+final_cadena = [centro_caracter(" Bienvenido a apuestas deportivas ", cadena),
+                centro_caracter(" Bienvenido a apuestas deportivas ", cadena) + '\n' + '\n',
+                "   (0) Empezar apuesta  ", "   (1) Salir del juego    "]
