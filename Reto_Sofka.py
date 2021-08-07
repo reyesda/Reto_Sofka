@@ -107,6 +107,13 @@ class podio:  # clase para guardar la posición de llegada
             self.resultado.append(self.orden_llegada.index(i) + 1)
 
 
+class concursante:
+    def __init__(self):
+        self.dinero = 10000
+        self.turnos = 0
+        self.riesgo = 0
+
+
 # leer archivo
 with open("data.txt", "r") as dt:
     # extraer líneas, borrar salto de línea, separar por comas
