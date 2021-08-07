@@ -1,12 +1,21 @@
 import random
+import time
+import os
+
+
+def limpiar_consola():
+    if os.name == "nt":
+        os.system("cls")
+    else:
+        os.system("clear")
 
 
 # función para graficar la carrera
 def dibujar_carros(nombres, figuras, porcentajes):
     maximo_casillas = 70  # máximos caracteres en pantalla
     # se imprime el porcentaje de avance de cada corredor
-    print(nombres + "  [" + ("░" * round(maximo_casillas * porcentajes)) + figuras +\
-          ("-" * round(maximo_casillas * (1 - porcentajes))) + "] ")
+    print(nombres + "  [" + "░" * round(maximo_casillas * porcentajes) + figuras +
+          "-" * round(maximo_casillas * (1 - porcentajes)) + "] ")
 
 
 class jugador:
@@ -56,11 +65,16 @@ class pista:  # crea el objeto que almacena todos los carriles
 
     # llama el método de avanzar para los carros y verificar si ganaron
     def avanzar(self):
+        # time.sleep(0.2)
+        limpiar_consola()
+
         for i in self.carriles:
             i.desplazamiento(i.distancia)
             i.comprobar()
 
             dibujar_carros(i.nombre, i.figura, i.porcentaje_carrera)
+
+        time.sleep(0.2)
 
 
 class podio:  # clase para guardar la posición de llegada
@@ -98,8 +112,7 @@ with open("data.txt", "r") as dt:
     # transformar primer elemento a int
     data[0] = [int(i) for i in data[0]]
 
-
-distancia1 = 4  # en kilometros
+distancia1 = 30 # en kilometros
 
 pista1 = pista()
 podio1 = podio()
@@ -114,6 +127,7 @@ with open("data.txt", "a") as dt:
     # transformar lista en string y agregar un salto de línea
     if podio1.resultado:
         dt.write(",".join(map(str, podio1.resultado)) + '\n')
+
 
 # print(podio1.resultado)
 
@@ -151,7 +165,6 @@ def estadisticas():
     resultados_estadisticas = [total_primero, procentaje_primero, veces_podio, total_partidas, ultimos_ganadores]
 
     return resultados_estadisticas
-
 
 # print(estadisticas())
 
