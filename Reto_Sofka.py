@@ -133,7 +133,7 @@ with open("data.txt", "a") as dt:
 
 # print(podio1.resultado)
 
-
+# función para escribir documento con las estadísticas
 def reporte_estadistica(resultados_estadisticas):
     with open("result.txt", "w") as dt_r:
         cadena = "Reporte estadisticas".capitalize()
