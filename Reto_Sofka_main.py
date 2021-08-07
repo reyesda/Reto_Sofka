@@ -26,6 +26,10 @@ while game_over is False:
 
     pista.llenar_carriles(datos[0], datos[1], datos[2])
 
+    # variables para GUI
+    estadisticas = False
+    seleccionar_corredor = False
+
     final_cadena = [Rs_funciones.centro_caracter(" Bienvenido a apuestas deportivas ", cadena, "="),
                     Rs_funciones.centro_caracter(" La avaricia  ", cadena, "=") + '\n' + '\n',
                     "   (1) Empezar apuesta  (-$500)", "   (0) Salir del juego    "]
@@ -44,15 +48,17 @@ while game_over is False:
                 concursante.dinero -= 500
 
                 if concursante.dinero > 1000:
-                    pass
+                    estadisticas = True
                 else:
                     final_cadena = [Rs_funciones.centro_caracter(" ¿Desea ver las estadísticas de los corredores?   ",
                                                                  cadena, " ") + '\n' + '\n',
-                                    "   No tienes suficiente dinero", "   (0) No    "]
+                                    "   No tienes suficiente dinero", "   (0) Continuar    "]
 
                     Rs_funciones.resultado_usuario_bool(cadena, final_cadena, concursante)
+
+                    seleccionar_corredor = True
             else:
-                pass
+                seleccionar_corredor = True
         else:
             game_over = True
 
@@ -64,3 +70,4 @@ while game_over is False:
 
     else:
         game_over = True
+
