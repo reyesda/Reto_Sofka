@@ -28,7 +28,7 @@ def input_usuario(texto, valor_inferior=0, valor_superior=1000000):
 
 
 # función para escribir documento con las estadísticas
-def reporte_estadistica(resultados_estadisticas):
+def reporte_estadistica(resultados_estadisticas, data):
     with open("result.txt", "w") as dt_r:
         cadena = "Reporte estadisticas".capitalize()
         dt_r.write(cadena.center(60, "=") + '\n' + '\n')
@@ -49,7 +49,7 @@ def reporte_estadistica(resultados_estadisticas):
 
 
 # función para calcular las estadísticas de los corredores
-def estadisticas():
+def estadisticas(data):
     total_primero = [0, 0, 0, 0, 0]  # indica el numero de veces que el corredor a quedado de primero
     veces_podio = [0, 0, 0, 0, 0]  # indica el numero de veces que el corredor queda en los 3 primeros
     total_partidas = len(data) - 3  # indica el numero de veces que se han guardado partidas
@@ -80,7 +80,7 @@ def estadisticas():
     # guarda todas las variables es “resultados_estadisticas”
     resultados_estadisticas = [total_primero, procentaje_primero, veces_podio, total_partidas, ultimos_ganadores]
 
-    reporte_estadistica(resultados_estadisticas)
+    reporte_estadistica(resultados_estadisticas, data)
     # return resultados_estadisticas
 
 
@@ -92,7 +92,7 @@ def dibujar_carros(nombres, figuras, porcentajes, llego):
           "-" * round(maximo_casillas * (1 - porcentajes)) + "] " + "$" * int(llego))
 
 
-# escribir en la última línea del archivo
+# escribir resultado en la última línea del archivo
 def actualizar_archivo():
     with open("data.txt", "a") as dt2:
         # transformar lista en string y agregar un salto de línea
@@ -102,12 +102,13 @@ def actualizar_archivo():
 
 # leer archivo
 def leer_archivo():
-    global data
+    # global data
     with open("data.txt", "r") as dt:
         # extraer líneas, borrar salto de línea, separar por comas
         data = [linea.rstrip('\n').split(",") for linea in dt]
         # transformar primer elemento a int
         data[0] = [int(i) for i in data[0]]
+    return data
 
 
 # Definición de funciones _____________________________________________________________
@@ -137,10 +138,10 @@ class carro(jugador):  # hereda de jugador
 
 
 class carril(carro):  # hereda de carro
-    def __init__(self, identificador, nombre, figura, distancia):
+    def __init__(self, identificador, nombre, figura, ):
         carro.__init__(self, identificador, nombre, figura)
 
-        self.distancia = distancia  # está en kilometros
+        self.distancia = 20  # está en kilometros
         self.ganador = False  # indica si ya llegó a la meta
 
         self.porcentaje_carrera = 0
@@ -157,9 +158,9 @@ class pista:  # crea el objeto que almacena todos los carriles
         self.carriles = []
 
     # llena “carriles” con todos los objetos carriles
-    def llenar_carriles(self, identificador, nombre, figura, distancia):
+    def llenar_carriles(self, identificador, nombre, figura):
         for i in range(len(identificador)):
-            self.carriles.append(carril(identificador[i], nombre[i], figura[i], distancia))
+            self.carriles.append(carril(identificador[i], nombre[i], figura[i]))
 
     # llama el método de avanzar para los carros y verificar si ganaron
     def avanzar(self):
@@ -216,17 +217,15 @@ class concursante:
 
 # Main  _______________________________________________________________
 
-data = []
-leer_archivo()
-distancia1 = 20  # en kilometros
+datos = leer_archivo()
 
 pista1 = pista()
 podio1 = podio()
 
-pista1.llenar_carriles(data[0], data[1], data[2], distancia1)
+pista1.llenar_carriles(datos[0], datos[1], datos[2])
 
 podio1.guardar_ganador(pista1)
 podio1.ordenar_resultado()
 
-estadisticas()
+estadisticas(datos)
 actualizar_archivo()
