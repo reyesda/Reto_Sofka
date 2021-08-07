@@ -2,6 +2,8 @@ import random
 import time
 import os
 
+# Definición de funciones _____________________________________________________________
+
 
 # función para limpiar consola
 def limpiar_consola():
@@ -25,12 +27,74 @@ def input_usuario(texto, valor_inferior=0, valor_superior=1000000):
         # print("input no valido")
 
 
+# función para escribir documento con las estadísticas
+def reporte_estadistica(resultados_estadisticas):
+    with open("result.txt", "w") as dt_r:
+        cadena = "Reporte estadisticas".capitalize()
+        dt_r.write(cadena.center(60, "=") + '\n' + '\n')
+        dt_r.write("Numero de carreras totales realizadas: {}".format(resultados_estadisticas[3]) + '\n' + '\n')
+        dt_r.write("Corredor     juegos ganados      porcentaje victorias " + '\n')
+
+        for i in range(len(resultados_estadisticas[0])):
+            dt_r.write("{}             {}                 {}%".format(data[1][i], resultados_estadisticas[0][i],
+                                                                      resultados_estadisticas[1][i]) + '\n')
+
+        dt_r.write('\n' + "Numero de veces en el podio" + '\n')
+        for i in range(len(resultados_estadisticas[0])):
+            dt_r.write("{}             {} ".format(data[1][i], resultados_estadisticas[2][i]) + '\n')
+
+        dt_r.write('\n' + "Ganadores ultimas 3 carreras: ")
+        for i in resultados_estadisticas[4]:
+            dt_r.write("{}   ".format(data[1][i]))
+
+
+# función para calcular las estadísticas de los corredores
+def estadisticas():
+    total_primero = [0, 0, 0, 0, 0]  # indica el numero de veces que el corredor a quedado de primero
+    veces_podio = [0, 0, 0, 0, 0]  # indica el numero de veces que el corredor queda en los 3 primeros
+    total_partidas = len(data) - 3  # indica el numero de veces que se han guardado partidas
+    ultimos_ganadores = []  # guarda los 3 últimos ganadores
+
+    for i in range(3, len(data)):
+        # transformar todos los elementos a int
+        data[i] = [int(j) for j in data[i]]
+
+        # recorre cada lista de resultado
+        for t in range(len(data[i])):
+            # busca que corredor quedó de primero
+            if data[i][t] == 1:
+                # sumas las victorias del corredor
+                total_primero[t] += data[i][t]
+
+                # encuentra los últimos 3 ganadores
+                if i >= len(data) - 3:
+                    ultimos_ganadores.append(t)
+
+            # identifica si el corredor estuvo dentro de los 3 primeros
+            if data[i][t] <= 3:
+                veces_podio[t] += 1
+
+    # calcula el porcentaje de victorias de los corredores
+    procentaje_primero = [round((i / sum(total_primero)) * 100) for i in total_primero if i != 0]
+
+    # guarda todas las variables es “resultados_estadisticas”
+    resultados_estadisticas = [total_primero, procentaje_primero, veces_podio, total_partidas, ultimos_ganadores]
+
+    reporte_estadistica(resultados_estadisticas)
+    # return resultados_estadisticas
+
+
 # función para graficar la carrera
 def dibujar_carros(nombres, figuras, porcentajes, llego):
     maximo_casillas = 70  # máximos caracteres en pantalla
     # se imprime el porcentaje de avance de cada corredor
     print(nombres + "  [" + "░" * round(maximo_casillas * porcentajes) + figuras +
           "-" * round(maximo_casillas * (1 - porcentajes)) + "] " + "$" * int(llego))
+
+
+# Definición de funciones _____________________________________________________________
+
+# Definición de clases  _______________________________________________________________
 
 
 # clase del jugador / corredor
@@ -130,6 +194,10 @@ class concursante:
         self.dinero += diferencia
 
 
+# Definición de clases  _______________________________________________________________
+
+# Main  _______________________________________________________________
+
 # leer archivo
 with open("data.txt", "r") as dt:
     # extraer líneas, borrar salto de línea, separar por comas
@@ -147,72 +215,10 @@ pista1.llenar_carriles(data[0], data[1], data[2], distancia1)
 podio1.guardar_ganador(pista1)
 podio1.ordenar_resultado()
 
+estadisticas()
+
 # escribir en la última línea del archivo
 with open("data.txt", "a") as dt:
     # transformar lista en string y agregar un salto de línea
     if podio1.resultado:
         dt.write(",".join(map(str, podio1.resultado)) + '\n')
-
-
-# print(podio1.resultado)
-
-# función para escribir documento con las estadísticas
-def reporte_estadistica(resultados_estadisticas):
-    with open("result.txt", "w") as dt_r:
-        cadena = "Reporte estadisticas".capitalize()
-        dt_r.write(cadena.center(60, "=") + '\n' + '\n')
-        dt_r.write("Numero de carreras totales realizadas: {}".format(resultados_estadisticas[3]) + '\n' + '\n')
-        dt_r.write("Corredor     juegos ganados      porcentaje victorias " + '\n')
-
-        for i in range(len(resultados_estadisticas[0])):
-            dt_r.write("{}             {}                 {}%".format(data[1][i], resultados_estadisticas[0][i],
-                                                                      resultados_estadisticas[1][i]) + '\n')
-
-        dt_r.write('\n' + "Numero de veces en el podio" + '\n')
-        for i in range(len(resultados_estadisticas[0])):
-            dt_r.write("{}             {} ".format(data[1][i], resultados_estadisticas[2][i]) + '\n')
-
-        dt_r.write('\n' + "Ganadores ultimas 3 carreras: ")
-        for i in resultados_estadisticas[4]:
-            dt_r.write("{}   ".format(data[1][i]))
-
-
-# función para calcular las estadísticas de los corredores
-def estadisticas():
-    total_primero = [0, 0, 0, 0, 0]  # indica el numero de veces que el corredor a quedado de primero
-    veces_podio = [0, 0, 0, 0, 0]  # indica el numero de veces que el corredor queda en los 3 primeros
-    total_partidas = len(data) - 3  # indica el numero de veces que se han guardado partidas
-    ultimos_ganadores = []  # guarda los 3 últimos ganadores
-
-    for i in range(3, len(data)):
-        # transformar todos los elementos a int
-        data[i] = [int(j) for j in data[i]]
-
-        # recorre cada lista de resultado
-        for t in range(len(data[i])):
-            # busca que corredor quedó de primero
-            if data[i][t] == 1:
-                # sumas las victorias del corredor
-                total_primero[t] += data[i][t]
-
-                # encuentra los últimos 3 ganadores
-                if i >= len(data) - 3:
-                    ultimos_ganadores.append(t)
-
-            # identifica si el corredor estuvo dentro de los 3 primeros
-            if data[i][t] <= 3:
-                veces_podio[t] += 1
-
-    # calcula el porcentaje de victorias de los corredores
-    procentaje_primero = [round((i / sum(total_primero)) * 100) for i in total_primero if i != 0]
-
-    # guarda todas las variables es “resultados_estadisticas”
-    resultados_estadisticas = [total_primero, procentaje_primero, veces_podio, total_partidas, ultimos_ganadores]
-
-    reporte_estadistica(resultados_estadisticas)
-    # return resultados_estadisticas
-
-# estadisticas()
-
-# por = [0.9, 1, 0.8, 1, 0.95]
-# dibujar_carros(data[1], data[2], por)

@@ -1,19 +1,19 @@
 ====================Reporte estadisticas====================
 
-Numero de carreras totales realizadas: 94
+Numero de carreras totales realizadas: 100
 
 Corredor     juegos ganados      porcentaje victorias 
-Marcos             26                 28%
-Daniel             17                 18%
-Andres             18                 19%
-Camilo             19                 20%
-Wilson             14                 15%
+Marcos             28                 28%
+Daniel             17                 17%
+Andres             21                 21%
+Camilo             19                 19%
+Wilson             15                 15%
 
 Numero de veces en el podio
-Marcos             60 
-Daniel             47 
-Andres             67 
-Camilo             59 
-Wilson             49 
+Marcos             64 
+Daniel             52 
+Andres             72 
+Camilo             61 
+Wilson             51 
 
-Ganadores ultimas 3 carreras: Wilson   Daniel   Camilo   
+Ganadores ultimas 3 carreras: Marcos   Marcos   Wilson   
