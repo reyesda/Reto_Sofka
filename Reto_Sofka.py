@@ -1,3 +1,6 @@
+import random
+
+
 class jugador:
     def __init__(self, identificador, nombre):
         self.identificador = identificador
@@ -5,11 +8,11 @@ class jugador:
 
 
 class carro(jugador):
-    def __init__(self, identificador, nombre, color, posicion):
+    def __init__(self, identificador, nombre, figura):
         jugador.__init__(self, identificador, nombre)
 
-        self.color = color
-        self.posicion = posicion
+        self.figura = figura
+        self.posicion = 0  # esta en metros
 
 
 class carril(carro):
