@@ -11,11 +11,11 @@ def limpiar_consola():
 
 
 # función para graficar la carrera
-def dibujar_carros(nombres, figuras, porcentajes):
+def dibujar_carros(nombres, figuras, porcentajes, llego):
     maximo_casillas = 70  # máximos caracteres en pantalla
     # se imprime el porcentaje de avance de cada corredor
     print(nombres + "  [" + "░" * round(maximo_casillas * porcentajes) + figuras +
-          "-" * round(maximo_casillas * (1 - porcentajes)) + "] ")
+          "-" * round(maximo_casillas * (1 - porcentajes)) + "] " + "$" * int(llego))
 
 
 class jugador:
@@ -72,7 +72,7 @@ class pista:  # crea el objeto que almacena todos los carriles
             i.desplazamiento(i.distancia)
             i.comprobar()
 
-            dibujar_carros(i.nombre, i.figura, i.porcentaje_carrera)
+            dibujar_carros(i.nombre, i.figura, i.porcentaje_carrera, i.ganador)
 
         time.sleep(0.2)
 
@@ -112,7 +112,7 @@ with open("data.txt", "r") as dt:
     # transformar primer elemento a int
     data[0] = [int(i) for i in data[0]]
 
-distancia1 = 30 # en kilometros
+distancia1 = 20  # en kilometros
 
 pista1 = pista()
 podio1 = podio()
