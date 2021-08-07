@@ -98,6 +98,23 @@ podio1.ordenar_resultado()
 # escribir en la última línea del archivo
 with open("data.txt", "a") as dt:
     # transformar lista en string y agregar un salto de línea
-    dt.write(",".join(map(str, podio1.resultado)) + '\n')
+    if podio1.resultado:
+        dt.write(",".join(map(str, podio1.resultado)) + '\n')
 
 print(podio1.resultado)
+
+
+def estadisticas():
+    resultados_estadisticas = []
+    total_primero = [0, 0, 0, 0, 0]
+    for i in range(3, len(data)):
+        data[i] = [int(j) for j in data[i]]
+
+        for t in range(len(data[i])):
+            if data[i][t] == 1:
+                total_primero[t] += data[i][t]
+
+    print(total_primero)
+
+
+estadisticas()
