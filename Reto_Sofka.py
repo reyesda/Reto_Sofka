@@ -1,6 +1,14 @@
 import random
 
 
+# función para graficar la carrera
+def dibujar_carros(nombres, figuras, porcentajes):
+    maximo_casillas = 70  # máximos caracteres en pantalla
+    # se imprime el porcentaje de avance de cada corredor
+    print(nombres + "  [" + ("░" * round(maximo_casillas * porcentajes)) + figuras +\
+          ("-" * round(maximo_casillas * (1 - porcentajes))) + "] ")
+
+
 class jugador:
     def __init__(self, identificador, nombre):
         self.identificador = identificador  # para asignar su lugar las listas
@@ -28,9 +36,13 @@ class carril(carro):  # hereda de carro
         self.distancia = distancia  # está en kilometros
         self.ganador = False  # indica si ya llegó a la meta
 
+        self.porcentaje_carrera = 0
+
     def comprobar(self):  # verifica si ya llegó a la meta
         if self.posicion == self.distancia * 1000:  # convierte distancia a metros
             self.ganador = True
+
+        self.porcentaje_carrera = self.posicion / (self.distancia * 1000)
 
 
 class pista:  # crea el objeto que almacena todos los carriles
@@ -47,6 +59,8 @@ class pista:  # crea el objeto que almacena todos los carriles
         for i in self.carriles:
             i.desplazamiento(i.distancia)
             i.comprobar()
+
+            dibujar_carros(i.nombre, i.figura, i.porcentaje_carrera)
 
 
 class podio:  # clase para guardar la posición de llegada
@@ -141,14 +155,6 @@ def estadisticas():
 
 # print(estadisticas())
 
-# función para graficar la carrera
-def dibujar_carros(nombres, figuras, porcentajes):
-    maximo_casillas = 70  # máximos caracteres en pantalla
-    for i in range(len(nombres)):
-        # se imprime el porcentaje de avance de cada corredor
-        print(nombres[i] + "  [" + ("░" * round(maximo_casillas * porcentajes[i])) + figuras[i] +\
-              ("-" * round(maximo_casillas * (1 - porcentajes[i]))) + "] ")
 
-
-por = [0.9, 1, 0.8, 1, 0.95]
-dibujar_carros(data[1], data[2], por)
+# por = [0.9, 1, 0.8, 1, 0.95]
+# dibujar_carros(data[1], data[2], por)
