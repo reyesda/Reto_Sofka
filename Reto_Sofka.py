@@ -118,7 +118,7 @@ def estadisticas():
                 total_primero[t] += data[i][t]
 
                 if i >= len(data) - 3:
-                    ultimos_ganadores.append(t + 1)
+                    ultimos_ganadores.append(t)
 
             if data[i][t] <= 3:
                 veces_podio[t] += 1
