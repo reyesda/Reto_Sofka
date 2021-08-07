@@ -1,4 +1,5 @@
 import Reto_Sofka_funciones as Rs_funciones
+import time
 
 # datos = Rs_funciones.leer_archivo()
 # pista = Rs_funciones.pista()
@@ -15,14 +16,17 @@ import Reto_Sofka_funciones as Rs_funciones
 cadena = " Tu cuenta bancaria: $ {:,}                                                   {}:{}"
 game_over = False
 
+concursante = Rs_funciones.concursante()
+
 while game_over is False:
+    Rs_funciones.limpiar_consola()
+
     # lectura archivos e inicializacion de variables
     datos = Rs_funciones.leer_archivo()
     pista = Rs_funciones.pista()
     podio = Rs_funciones.podio()
 
-    concursante = Rs_funciones.concursante()
-    concursante.dinero = 1600
+    # concursante.dinero = 1600
 
     pista.llenar_carriles(datos[0], datos[1], datos[2])
 
@@ -70,4 +74,17 @@ while game_over is False:
 
     else:
         game_over = True
+
+    if not game_over and estadisticas:
+        Rs_funciones.limpiar_consola()
+        Rs_funciones.barra_estado(cadena, concursante)
+
+        with open("result.txt", "r") as dt:
+            # extraer líneas, borrar salto de línea, separar por comas
+            data = [linea.rstrip('\n').split(",") for linea in dt]
+
+        for i in data:
+            print(i[0])
+
+        time.sleep(15)
 

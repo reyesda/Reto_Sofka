@@ -236,8 +236,7 @@ class podio:  # clase para guardar la posición de llegada
 class concursante:
     def __init__(self):
         self.dinero = 10000
-        self.turnos = 0
-        self.riesgo = 0
+        self.elegido = 0
 
     def balance_dinero(self, diferencia):
         self.dinero += diferencia
