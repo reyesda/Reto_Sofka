@@ -1,1 +1,3 @@
-Reporte estadisticas
+====================Reporte estadisticas====================
+
+Numero de juegos totales: 77
