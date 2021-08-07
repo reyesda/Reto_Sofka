@@ -141,9 +141,11 @@ def estadisticas():
 
 # print(estadisticas())
 
+# función para graficar la carrera
 def dibujar_carros(nombres, figuras, porcentajes):
-    maximo_casillas = 70
+    maximo_casillas = 70  # máximos caracteres en pantalla
     for i in range(len(nombres)):
+        # se imprime el porcentaje de avance de cada corredor
         print(nombres[i] + "  [" + ("░" * round(maximo_casillas * porcentajes[i])) + figuras[i] +\
               ("-" * round(maximo_casillas * (1 - porcentajes[i]))) + "] ")
 
