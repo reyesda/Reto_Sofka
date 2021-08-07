@@ -62,3 +62,19 @@ class podio:
     def ordenar_resultado(self):
         for i in range(len(self.orden_llegada)):
             self.resultado.append(self.orden_llegada.index(i) + 1)
+
+
+identificador1 = [0, 1, 2, 3, 4]
+nombre1 = ["Marcos", "Daniel", "Andres", "Valentina", "Juan"]
+figura1 = ["]■>", "}■>", ")■>", "╠■>", "#■>"]
+distancia1 = 4
+
+pista1 = pista()
+podio1 = podio()
+
+pista1.llenar_carriles(identificador1, nombre1, figura1, distancia1)
+
+podio1.guardar_ganador(pista1)
+podio1.ordenar_resultado()
+
+print(podio1.resultado)
