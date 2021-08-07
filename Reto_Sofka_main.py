@@ -20,4 +20,4 @@ final_cadena = [Rs_funciones.centro_caracter(" Bienvenido a apuestas deportivas 
                 Rs_funciones.centro_caracter(" La avaricia  ", cadena) + '\n' + '\n',
                 "   (0) Empezar apuesta  ", "   (1) Salir del juego    "]
 
-Rs_funciones.resultado_usuario_bool(cadena, final_cadena, concursante)
+print(Rs_funciones.resultado_usuario_bool(cadena, final_cadena, concursante))
