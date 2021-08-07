@@ -126,6 +126,9 @@ class concursante:
         self.turnos = 0
         self.riesgo = 0
 
+    def balance_dinero(self, diferencia):
+        self.dinero += diferencia
+
 
 # leer archivo
 with open("data.txt", "r") as dt:
