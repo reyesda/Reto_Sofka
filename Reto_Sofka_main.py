@@ -1,18 +1,6 @@
 import Reto_Sofka_funciones as Rs_funciones
 import time
 
-# datos = Rs_funciones.leer_archivo()
-# pista = Rs_funciones.pista()
-# podio = Rs_funciones.podio()
-#
-# pista.llenar_carriles(datos[0], datos[1], datos[2])
-#
-# podio.guardar_ganador(pista)
-# podio.ordenar_resultado()
-#
-# Rs_funciones.estadisticas(datos)
-# Rs_funciones.actualizar_archivo(podio)
-
 cadena = " Tu cuenta bancaria: $ {:,}                                                   {}:{}"
 game_over = False
 
@@ -127,3 +115,19 @@ while game_over is False:
         Rs_funciones.actualizar_archivo(podio)
 
         # Ventana de resultados
+        if podio.orden_llegada[0] == concursante.elegido:
+            concursante.dinero += concursante.apuesta * 2.2
+
+            final_cadena = [Rs_funciones.centro_caracter(" ¡Ganaste!  ", cadena, " ") + '\n',
+                            "   Apostaste ${:,} y ganas ${:,}".format(concursante.apuesta, concursante.apuesta * 2.2),
+                            "   (0) Continuar"]
+
+            Rs_funciones.resultado_usuario_bool(cadena, final_cadena, concursante)
+
+        else:
+
+            final_cadena = [Rs_funciones.centro_caracter(" ¡Sigue intentando!  ", cadena, " ") + '\n',
+                            "   (0) Continuar"]
+
+            Rs_funciones.resultado_usuario_bool(cadena, final_cadena, concursante)
+
