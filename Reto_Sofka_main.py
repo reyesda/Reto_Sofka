@@ -12,7 +12,7 @@ import Reto_Sofka_funciones as Rs_funciones
 # Rs_funciones.estadisticas(datos)
 # Rs_funciones.actualizar_archivo(podio)
 
-cadena = "$ {:,}                                                      {}:{}"
+cadena = " Tu cuenta bancaria: $ {:,}                                                   {}:{}"
 game_over = False
 
 while game_over is False:
@@ -34,6 +34,13 @@ while game_over is False:
         if concursante.dinero > 1500:
             pass
         else:
-            pass
+            game_over = True
+
+            final_cadena = [Rs_funciones.centro_caracter(" Bienvenido a apuestas deportivas ", cadena),
+                            Rs_funciones.centro_caracter(" La avaricia  ", cadena) + '\n' + '\n',
+                            "   No tienes suficiente dinero ", "   (0) Salir del juego    "]
+
+            Rs_funciones.resultado_usuario_bool(cadena, final_cadena, concursante)
+
     else:
-        pass
+        game_over = True

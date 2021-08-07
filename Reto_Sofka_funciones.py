@@ -119,12 +119,12 @@ def barra_estado(str_in, player):
     now = datetime.now()
     limpiar_consola()
     print(str_in.format(player.dinero, now.hour, now.minute))
-    print("¯" * (len(str_in) + 2) + '\n')
+    print("¯" * (len(str_in)) + '\n')
 
 
 # coloca caracteres en mayúscula y en medio de “=”
 def centro_caracter(str_escrito, str_guia):
-    return str_escrito.upper().center(len(str_guia) + 2, "=")
+    return str_escrito.upper().center(len(str_guia), "=")
 
 
 # muestra en pantalla todos los mensajes de  “iterable_str” y toma el input del usuario como bool
