@@ -1,6 +1,7 @@
 import Reto_Sofka_funciones as Rs_funciones
 import time
 
+# variables iniciales
 cadena = " Tu cuenta bancaria: $ {:,}                                                   {}:{}"
 game_over = False
 
